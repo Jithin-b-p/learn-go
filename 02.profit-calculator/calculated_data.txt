@@ -1,0 +1,3 @@
+Earnings: 800.00
+Profit: 784.00
+Ratio: 1.02
