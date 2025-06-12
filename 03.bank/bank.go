@@ -1,41 +1,17 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"os"
-	"strconv"
+
+	"github.com/Jithin-b-p/learn-go/03.bank/fileops"
+	"github.com/Pallinder/go-randomdata"
 )
 
-func writeToFile(balance float64) {
-
-	balanceString := fmt.Sprint(balance)
-	os.WriteFile("balance.txt", []byte(balanceString), 0644)
-
-}
-
-func readFromFile() (float64, error) {
-
-	data, err := os.ReadFile("balance.txt")
-
-	if err != nil {
-		return 1000, errors.New("fle not found")
-	}
-
-	stringBalance := string(data)
-
-	balance, err := strconv.ParseFloat(stringBalance, 64)
-
-	if err != nil {
-		return 1000, errors.New("failed to parse stored balance value")
-	}
-
-	return balance, nil
-}
+const fileName = "balance.txt"
 
 func main() {
 
-	accountBalance,  err := readFromFile()
+	accountBalance, err := fileops.ReadFloatFromFile(fileName)
 
 	if err != nil {
 		fmt.Println("ERROR")
@@ -44,43 +20,36 @@ func main() {
 	}
 
 	fmt.Println("Welcome to the Go bank!")
+	fmt.Println(`avaliable 24/7`, "contact:", randomdata.PhoneNumber())
 	for {
-		fmt.Println(`
-What do you want to do?
-1.Check balance
-2.Deposit money
-3.Withdraw money
-4.Exit
-	`)
+
+		presentOptions()
 
 		var choice int
 		fmt.Print("Enter you choice: ")
 		fmt.Scan(&choice)
-		
-		
+
 		if choice == 1 {
 
-
 			fmt.Println("Your account balance is:", accountBalance)
-		
-		}else if choice == 2 {
-				
+
+		} else if choice == 2 {
+
 			var amount float64
 			fmt.Print("Your amount: ")
 			fmt.Scan(&amount)
 
 			if amount <= 0 {
 				fmt.Println("Enter a valid amount!!")
-				
-			}else {
+
+			} else {
 				accountBalance += amount
 
-				writeToFile(accountBalance)
+				fileops.WriteFloatToFile(accountBalance, fileName)
 				fmt.Println("Balance updated! New amount:", accountBalance)
 			}
-			
 
-		}else if choice == 3 {
+		} else if choice == 3 {
 
 			var amount float64
 
@@ -90,22 +59,21 @@ What do you want to do?
 			if amount <= 0 {
 				fmt.Println("Enter a valid amount!!")
 				return
-			}else if amount > accountBalance {
+			} else if amount > accountBalance {
 				fmt.Println("Not enough balance!!")
-			}else {
+			} else {
 				accountBalance -= amount
-				writeToFile(accountBalance)
+				fileops.WriteFloatToFile(accountBalance, fileName)
 				fmt.Println("New account balance:", accountBalance)
 			}
-			
-		}else if choice == 4 {
+
+		} else if choice == 4 {
 			fmt.Println("Thank you!! Good bye!")
 			break
-		}else {
+		} else {
 			fmt.Println("Invalid Input!")
 		}
 
 	}
-	
-	
+
 }

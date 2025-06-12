@@ -1,3 +1,3 @@
-module example.com/profit-calculator
+module example.com/profit_calculator
 
 go 1.24.4
