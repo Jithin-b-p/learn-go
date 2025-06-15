@@ -11,6 +11,9 @@ func main() {
 	lastName := getUserData("Enter your last name: ")
 	birthDate := getUserData("Enter your birthdate: ")
 
+	email := getUserData("Enter the email for admin: ")
+	password := getUserData("Enter the password: ")
+
 	appUser, err := user.New(firstName, lastName, birthDate)
 	// outputUserDetails(appUser)
 
@@ -20,6 +23,11 @@ func main() {
 
 	// passing address
 	appUser.OutputUserDetails()
+
+	appAdmin := user.NewAdmin(firstName, lastName, birthDate, email, password)
+
+	appAdmin.OutputUserDetails()
+
 }
 
 // func outputUserDetails(u *user) {
