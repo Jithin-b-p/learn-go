@@ -1,39 +1,9 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"time"
+	"github.com/Jithin-b-p/learn-go/05.struct/user"
 )
-
-type user struct {
-	firstName string
-	lastName  string
-	birthDate string
-	createdAt time.Time
-}
-
-// method
-func (u user) outputUserDetails() {
-	fmt.Println(u.firstName, u.lastName, u.birthDate)
-}
-
-// returns the pointer so that we can mutate.
-func newUser(firstName, lastName, birthDate string) (*user, error) {
-
-	// adding validation
-	if firstName == "" || lastName == "" || birthDate == "" {
-
-		return nil, errors.New("first name, last name and birthdate are required")
-
-	}
-	return &user{
-		firstName: firstName,
-		lastName:  lastName,
-		birthDate: birthDate,
-		createdAt: time.Now(),
-	}, nil
-}
 
 func main() {
 
@@ -41,7 +11,7 @@ func main() {
 	lastName := getUserData("Enter your last name: ")
 	birthDate := getUserData("Enter your birthdate: ")
 
-	appUser, err := newUser(firstName, lastName, birthDate)
+	appUser, err := user.New(firstName, lastName, birthDate)
 	// outputUserDetails(appUser)
 
 	if err != nil {
@@ -49,7 +19,7 @@ func main() {
 	}
 
 	// passing address
-	appUser.outputUserDetails()
+	appUser.OutputUserDetails()
 }
 
 // func outputUserDetails(u *user) {
