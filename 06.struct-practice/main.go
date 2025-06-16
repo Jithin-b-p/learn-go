@@ -16,12 +16,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
+	newNote.Display()
 }
 
 func getUserInput(prompt string) string {
 
-	fmt.Println(prompt)
+	fmt.Print(prompt)
 	var value string
 
 	fmt.Scanln(&value)
