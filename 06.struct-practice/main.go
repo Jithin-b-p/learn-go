@@ -20,6 +20,12 @@ func main() {
 		panic(err)
 	}
 	newNote.Display()
+
+	err = newNote.Save()
+
+	if err != nil {
+		panic(err)
+	}
 }
 
 func getUserInput(prompt string) string {
