@@ -1,7 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strings"
 
 	"github.com/Jithin-b-p/learn-go/06.struct-practice/note"
 )
@@ -22,8 +25,17 @@ func main() {
 func getUserInput(prompt string) string {
 
 	fmt.Print(prompt)
-	var value string
 
-	fmt.Scanln(&value)
-	return value
+	reader := bufio.NewReader(os.Stdin)
+
+	data, err := reader.ReadString('\n')
+
+	if err != nil {
+		return ""
+	}
+
+	data = strings.TrimSuffix(data, "\n")
+	data = strings.TrimSuffix(data, "\r")
+
+	return data
 }
