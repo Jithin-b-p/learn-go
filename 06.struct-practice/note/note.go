@@ -31,7 +31,7 @@ func (note Note) Save() error {
 }
 
 func (note Note) Display() {
-	fmt.Printf("Your note titled %v has the following content:\n\n%v\n", note.Title, note.Content)
+	fmt.Printf("Your note titled \"%v\" has the following content:\n\n%v\n", note.Title, note.Content)
 }
 
 // creation function
