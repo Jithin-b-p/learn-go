@@ -60,4 +60,9 @@ func MapFunc() {
 	itemPrices.output()
 
 	fmt.Println("========================================")
+
+	for key, value := range itemPrices {
+		fmt.Println("Key:", key)
+		fmt.Println("Value:", value)
+	}
 }

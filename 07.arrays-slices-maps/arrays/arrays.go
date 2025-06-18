@@ -79,4 +79,15 @@ func ArrayFunc() {
 	fmt.Println(cap(arr1))
 
 	fmt.Println(arr)
+
+	fmt.Println("==============================================")
+
+	names := []string{}
+
+	names = append(names, "Jithin", "kiran", "kailas")
+
+	for indx, value := range names {
+		fmt.Println("Index:", indx)
+		fmt.Println("Value:", value)
+	}
 }
