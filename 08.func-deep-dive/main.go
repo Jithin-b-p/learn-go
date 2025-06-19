@@ -22,6 +22,13 @@ func main() {
 
 	transformedNums = transformNumber(&oddNums, getTransformFunc(&oddNums))
 	fmt.Println(transformedNums)
+
+	//anonymous functions
+	sNums := transformNumber(&nums, func(num int) int {
+		return num * num
+	})
+
+	fmt.Println("square of nums", sNums)
 }
 
 //returning function (if numbers even return double else triple)
