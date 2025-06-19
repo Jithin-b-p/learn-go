@@ -29,6 +29,9 @@ func main() {
 	})
 
 	fmt.Println("square of nums", sNums)
+
+	doubled := transformNumber(&nums, createTransformer(2))
+	fmt.Println("double created transformer:", doubled)
 }
 
 //returning function (if numbers even return double else triple)
@@ -55,4 +58,12 @@ func doubleValue(value int) int {
 }
 func tripleValue(value int) int {
 	return 3 * value
+}
+
+// we are creating a factory function
+func createTransformer(factor int) func(num int) int {
+
+	return func(num int) int {
+		return num * factor
+	}
 }
