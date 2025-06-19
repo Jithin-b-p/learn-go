@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/Jithin-b-p/learn-go/08.func-deep-dive/variadicfn"
+)
 
 type transformFn func(int) int
 
@@ -32,9 +36,31 @@ func main() {
 
 	doubled := transformNumber(&nums, createTransformer(2))
 	fmt.Println("double created transformer:", doubled)
+
+	//find factorial
+
+	fmt.Println("factorial of 5 is", factorial(5))
+
+	fmt.Println("=========================================")
+
+	variadicfn.Sum(20, 4, 8, 16, 32, 64)
+
+	//unpacking slice
+	variadicfn.Sum(10, nums...)
+
 }
 
-//returning function (if numbers even return double else triple)
+// recursion
+func factorial(n int) int {
+
+	if n == 1 {
+		return 1
+	}
+
+	return n * factorial(n-1)
+}
+
+// returning function (if numbers even return double else triple)
 func getTransformFunc(nums *[]int) transformFn {
 
 	if (*nums)[0]%2 == 0 {
